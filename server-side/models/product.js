@@ -27,15 +27,29 @@ const productSchema = new Schema(
       type: Array,
     },
     category: {
-      type: Array,      
+      type: Array,
     },
     price: {
       type: Number,
       required: true,
-    },    
+    },
     inStock: {
       type: Boolean,
-      default: true
+      default: true,
+    },
+    socialLinks: {
+      facebookLink: {
+        type: String,
+      },
+      twitterLink: {
+        type: String,
+      },
+      instagramLink: {
+        type: String,
+      },
+      pinterestLink: {
+        type: String,
+      },
     },
     postedBy: {
       type: ObjectId,

@@ -178,7 +178,18 @@ router.post(
   isAuthenticatedAndAdmin,
   upload.single("productImg"),
   async (req, res) => {
-    const { title, desc, size, color, price, category } = req.body;
+    const {
+      title,
+      desc,
+      size,
+      color,
+      price,
+      category,
+      facebookLink,
+      twitterLink,
+      instagramLink,
+      pinterestLink,
+    } = req.body;
 
     // console.log(req.file);
 
@@ -202,6 +213,12 @@ router.post(
         color: color.split(","),
         price,
         category: category.split(","),
+        socialLinks: {
+          facebookLink,
+          twitterLink,
+          instagramLink,
+          pinterestLink,
+        },
         postedBy: req.user.id,
       });
 
@@ -246,7 +263,7 @@ router.delete("/:id", isAuthenticatedAndAdmin, async (req, res) => {
     await cloudinary.uploader.destroy(product.cloudinaryImgId);
     // Delete product from db
     await product.remove();
-    res.status(200).json({ id: req.params.id }); 
+    res.status(200).json({ id: req.params.id });
   } catch (err) {
     res.status(500).json(err);
   }

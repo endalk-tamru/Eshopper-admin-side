@@ -44,7 +44,9 @@ const ProductDetail = ({ products, reviewInfo }) => {
             {`${reviewInfo.totalRate ? reviewInfo.totalRate : 0}`}
           </Stack>
 
-          <Typography component="p">{products.desc}</Typography>
+          {products.desc?.split("\n").map((str) => (
+            <Typography component="p">{str}</Typography>
+          ))}          
 
           <Stack direction="row" spacing={2} alignItems="center">
             <Typography variant="body1" component="p">

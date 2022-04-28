@@ -78,6 +78,10 @@ export default function AddProductForm() {
     title: "",
     price: "",
     desc: "",
+    facebookLink: "",
+    twitterLink: "",
+    instagramLink: "",
+    pinterestLink: "",
   });
   const [productImg, setProductImg] = useState("");
   const [category, setCategory] = useState([]);
@@ -141,6 +145,10 @@ export default function AddProductForm() {
     productData.append("category", category);
     productData.append("color", colorChecked);
     productData.append("size", sizeChecked);
+    productData.append("facebookLink", value.facebookLink);
+    productData.append("twitterLink", value.twitterLink);
+    productData.append("instagramLink", value.instagramLink);
+    productData.append("pinterestLink", value.pinterestLink);
 
     dispatch(createProduct(productData));
   };
@@ -159,6 +167,7 @@ export default function AddProductForm() {
 
       <form onSubmit={onSubmit}>
         <Stack spacing={3}>
+          {/* Image */}
           <label htmlFor="contained-button-file">
             <Input
               accept="image/*"
@@ -180,6 +189,7 @@ export default function AddProductForm() {
             </Typography>
           </label>
 
+          {/* Title & Price */}
           <Stack
             direction={{ xs: "column", sm: "row" }}
             spacing={{ xs: 3, sm: 4 }}
@@ -207,6 +217,7 @@ export default function AddProductForm() {
             </FormControl>
           </Stack>
 
+          {/* Description */}
           <TextField
             fullWidth
             label="Description"
@@ -218,6 +229,7 @@ export default function AddProductForm() {
             onChange={handleValueChange}
           />
 
+          {/* Categories */}
           <FormControl fullWidth variant="standard">
             <InputLabel id="category">Category</InputLabel>
             <Select
@@ -247,6 +259,7 @@ export default function AddProductForm() {
             </Select>
           </FormControl>
 
+          {/* Color */}
           <FormControl fullWidth component="fieldset">
             <FormLabel component="legend">Color</FormLabel>
             <FormGroup aria-label="position" row>
@@ -266,6 +279,7 @@ export default function AddProductForm() {
             </FormGroup>
           </FormControl>
 
+          {/* Size */}
           <FormControl fullWidth component="fieldset">
             <FormLabel component="legend">Size</FormLabel>
             <FormGroup aria-label="position" row>
@@ -284,6 +298,44 @@ export default function AddProductForm() {
               ))}
             </FormGroup>
           </FormControl>
+
+          {/* Social Media Links */}
+          <TextField
+            fullWidth
+            label="Facebook Link - (optional)"
+            name="facebookLink"
+            variant="standard"
+            placeholder="https://www.facebook.com/"
+            value={value.facebookLink}
+            onChange={handleValueChange}
+          />
+          <TextField
+            fullWidth
+            label="Twitter Link - (optional)"
+            name="twitterLink"
+            variant="standard"
+            placeholder="https://www.twitter.com/"
+            value={value.twitterLink}
+            onChange={handleValueChange}
+          />
+          <TextField
+            fullWidth
+            label="Instagram Link - (optional)"
+            name="instagramLink"
+            variant="standard"
+            placeholder="https://www.instagram.com/"
+            value={value.instagramLink}
+            onChange={handleValueChange}
+          />
+          <TextField
+            fullWidth
+            label="Pinterest Link - (optional)"
+            name="pinterestLink"
+            variant="standard"
+            placeholder="https://www.pinterest.com/"
+            value={value.pinterestLink}
+            onChange={handleValueChange}
+          />
 
           <Button
             fullWidth
